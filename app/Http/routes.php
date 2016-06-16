@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# landings
+Route::get('/', 'LandingController@index');
+Route::get('/register', 'LandingController@register');
+Route::get('/about', 'LandingController@about');
+Route::get('/contact', 'LandingController@contact');
+
+# Auths
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');
+Route::post('/register', 'AuthController@register');
+
+# Student
+Route::get('/student', 'StudentController@index');
