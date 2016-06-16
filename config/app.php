@@ -156,6 +156,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Additional providers
+         */
+        Illuminate\Html\HtmlServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
     ],
 
     /*
@@ -201,6 +206,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Additional aliases
+         */
+        'Form'=> Illuminate\Html\FormFacade::class, 
+        'Html'=> Illuminate\Html\HtmlFacade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Hash' => Illuminate\Support\Facades\Hash::class
 
     ],
 
