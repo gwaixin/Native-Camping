@@ -1,6 +1,6 @@
 @extends('common.landing')
 
-@section('content')
+@section('contentMain')
 <div class="col-lg-12">
 	<h2>Registration</h2>
 	<form action="/register" method="POST" class="form-horizontal">

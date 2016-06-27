@@ -1,6 +1,6 @@
 @extends('common.landing')
 
-@section('content')
+@section('contentMain')
 <div class="col-lg-12">
 	<h2>Contact</h2>
 </div>
