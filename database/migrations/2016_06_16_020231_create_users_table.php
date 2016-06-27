@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('country');
             $table->char('user_type', 2);
             $table->char('status', 1);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
