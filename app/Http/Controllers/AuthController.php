@@ -35,6 +35,7 @@ class AuthController extends Controller
 
     public function logout() {
       Auth::logout();
+      return view('landing.logout', ['title' => 'BYEERS']);
     }
 
     public function register(Request $request) {
