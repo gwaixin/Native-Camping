@@ -1,24 +1,24 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
-    <li class="sidebar-brand @if($title == 'home') active @endif" >
+    <li class="sidebar-brand">
       <a href="#">
         NativeCamping
       </a>
     </li>
     <li>
-      <a href="#">Shortcuts</a>
+      <a href="/student/teachers">Teachers</a>
     </li>
     <li>
-      <a href="#">Overview</a>
+      <a href="#">Profile</a>
     </li>
     <li>
-      <a href="#">Events</a>
+      <a href="#">Textbook</a>
     </li>
     <li>
-      <a href="#">About</a>
+      <a href="#">Notes</a>
     </li>
     <li>
-      <a href="#">Services</a>
+      <a href="#">Album</a>
     </li>
     <li>
       <a href="/logout">Logout</a>
