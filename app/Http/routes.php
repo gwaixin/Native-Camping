@@ -18,9 +18,10 @@ Route::get('/about', 'LandingController@about');
 Route::get('/contact', 'LandingController@contact');
 
 # Auths
+Route::get('/login', 'LandingController@index');
 Route::post('/login', 'AuthController@login');
-Route::post('/logout', 'AuthController@logout');
+Route::get('/logout', 'AuthController@logout');
 Route::post('/register', 'AuthController@register');
 
 # Student
-Route::get('/student', 'StudentController@index');
+Route::get('/student', ['middleware' => 'auth', 'uses' => 'StudentController@index']);

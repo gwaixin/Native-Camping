@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\User;
 use Hash;
 
+use \Auth;
+
 use Validator;
 use Redirect;
 
@@ -22,24 +24,17 @@ class AuthController extends Controller
     		return Redirect::back()->withErrors($validator)->withInput();
     	} else {
     		$errorMessage = "";
-    		// search for user by email
-    		$user = User::where('email', $request->email)->first();
-    		if ($user) {
-    			// checks password if match
-    			if (Hash::check($request->password, $user->password)) {
-    				return redirect()->action('StudentController@index');
-    			} else {
-    				$errorMessage = "Email and password does not match";
-    			}
-    		} else {
-    			$errorMessage = "Email does not exist";
-    		}
+        if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
+          return redirect()->action('StudentController@index');
+        } else {
+          $errorMessage = "Email and password does not match";
+        }
     		return redirect()->back()->with(['customError' => $errorMessage])->withInput();
     	}
     }
 
     public function logout() {
-
+      Auth::logout();
     }
 
     public function register(Request $request) {
