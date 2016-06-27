@@ -24,4 +24,5 @@ Route::get('/logout', 'AuthController@logout');
 Route::post('/register', 'AuthController@register');
 
 # Student
-Route::get('/student', ['middleware' => 'auth', 'uses' => 'StudentController@index']);
+Route::get('/student', 'StudentController@index');
+Route::get('/student/teachers', 'StudentController@teachers');
