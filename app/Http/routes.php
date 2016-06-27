@@ -26,3 +26,8 @@ Route::post('/register', 'AuthController@register');
 # Student
 Route::get('/student', 'StudentController@index');
 Route::get('/student/teachers', 'StudentController@teachers');
+
+# Teacher
+Route::get('/teacher', 'TeacherController@index');
+Route::get('/teacher/room', 'TeacherController@room');
+Route::get('/teacher/textbook', 'TeacherController@textbook');
