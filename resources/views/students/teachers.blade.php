@@ -1,5 +1,6 @@
 @extends('common.students')
 
 @section('contentMain')
-	<h3>Welcome student</h3>			
+	<h3>Teacher LIST</h3>
+	<hr>
 @endsection
