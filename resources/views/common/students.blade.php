@@ -19,5 +19,7 @@
 @endsection
 
 @section('styles')
+	@parent
 	{!! Html::style('css/simple-sidebar.css') !!}
+	{!! Html::style('css/users/common.css') !!}
 @endsection

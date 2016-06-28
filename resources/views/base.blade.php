@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ncApp" ng-cloak>
 <head>
 	<meta charset="UTF-8">
 	<title>Native Camping Site : @yield('title')</title>
@@ -34,6 +34,7 @@
 	</div>
 	<!-- DEFAULT SCRIPT -->
 	{!! Html::script('js/default-libs.min.js') !!}
+	{!! Html::script('js/angular/app.js') !!}
 	<!-- ADDITIONAL SCRIPTS -->
 	@yield('scripts')
 </body>
