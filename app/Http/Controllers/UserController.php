@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\User;
+
 class UserController extends Controller
 {
     /**
@@ -82,5 +84,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function teachers() {
+      $teachers = User::where('user_type', 2)->get();
+      return json_encode($teachers);
+    }
+    
+    public function students() {
+      $users = User::where('user_type', 1)->get();
+      return json_encode($users);
     }
 }
