@@ -31,3 +31,7 @@ Route::get('/student/teachers', 'StudentController@teachers');
 Route::get('/teacher', 'TeacherController@index');
 Route::get('/teacher/room', 'TeacherController@room');
 Route::get('/teacher/textbook', 'TeacherController@textbook');
+
+# API Users
+Route::get('/user/teachers', 'UserController@teachers');
+Route::get('/user/students', 'UserController@students');
