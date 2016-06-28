@@ -33,5 +33,12 @@ Route::get('/teacher/room', 'TeacherController@room');
 Route::get('/teacher/textbook', 'TeacherController@textbook');
 
 # API Users
-Route::get('/user/teachers', 'UserController@teachers');
-Route::get('/user/students', 'UserController@students');
+Route::get('/user/teacher/all', 'UserController@teachers');
+Route::get('/user/teacher/:id', 'UserController@teacher');
+Route::put('/user/teacher/:id', 'UserController@teacherUpdate');
+Route::delete('/user/teacher/:id', 'UserController@teachereDelete');
+
+Route::get('/user/student/all', 'UserController@students');
+Route::get('/user/student/:id', 'UserController@student');
+Route::put('/user/student/:id', 'UserController@studentUpdate');
+Route::delete('/user/student/:id', 'UserController@studentDelete');
