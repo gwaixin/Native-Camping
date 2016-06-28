@@ -1,0 +1,25 @@
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; }
+  .status-circle.status-default {
+    background-color: #aaa; }
+  .status-circle.status-standby {
+    background-color: #78b; }
+
+.teacher-lists .teacher-view {
+  text-align: center; }
+  .teacher-lists .teacher-view .figure {
+    width: 100%; }
+    .teacher-lists .teacher-view .figure img {
+      width: 100%;
+      height: 75px; }
+  .teacher-lists .teacher-view .teacher-info .status-circle {
+    margin: 0 auto;
+    margin-top: 0.5rem; }
+  .teacher-lists .teacher-view .teacher-info .teacher-name {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center; }
+
+/*# sourceMappingURL=common.css.map */
