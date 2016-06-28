@@ -21,5 +21,6 @@
 @endsection
 
 @section('scripts')
-{!! Html::script('js/angular/controller/student/teacher-list.js') !!}
+	@parent
+	{!! Html::script('js/angular/controller/student/teacher-list.js') !!}
 @endsection

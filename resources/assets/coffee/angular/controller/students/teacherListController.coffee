@@ -4,13 +4,14 @@ window.ncApp.controller 'TeacherList', [
 	'$scope'
 	'$rootScope'
 	'$http'
-	($s, $rs, $http) ->
+	'RequestHandler'
+	($s, $rs, $http, reqHandler) ->
 		self = this
 		$s.teachers = []
 		
 		# initialize Teacher list controller
 		$s.init = ->
-			$http.get($rs.baseUrl + 'user/teachers').then (res) ->
+			reqHandler.teacherAll().then (res) ->
 				if res.data
 					$s.teachers = res.data
 				else

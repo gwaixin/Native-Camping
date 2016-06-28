@@ -17,9 +17,11 @@
 		</div>
 	</div>
 @endsection
-
+@section('scripts')
+{!! Html::script('js/angular/factories.js') !!}
+@endsection
+	
 @section('styles')
-	@parent
-	{!! Html::style('css/simple-sidebar.css') !!}
-	{!! Html::style('css/users/common.css') !!}
+{!! Html::style('css/simple-sidebar.css') !!}
+{!! Html::style('css/users/common.css') !!}
 @endsection

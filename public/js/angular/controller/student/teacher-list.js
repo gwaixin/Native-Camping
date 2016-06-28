@@ -1,12 +1,12 @@
 (function() {
   'use strict';
   window.ncApp.controller('TeacherList', [
-    '$scope', '$rootScope', '$http', function($s, $rs, $http) {
+    '$scope', '$rootScope', '$http', 'RequestHandler', function($s, $rs, $http, reqHandler) {
       var self;
       self = this;
       $s.teachers = [];
       $s.init = function() {
-        $http.get($rs.baseUrl + 'user/teachers').then(function(res) {
+        reqHandler.teacherAll().then(function(res) {
           if (res.data) {
             $s.teachers = res.data;
           } else {
