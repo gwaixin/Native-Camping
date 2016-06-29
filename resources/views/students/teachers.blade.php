@@ -1,12 +1,11 @@
 @extends('common.students')
 
 @section('contentMain')
+	<h2>TEACHER LIST</h2>
 	<div class="" ng-controller="TeacherList">
-		<h3>Teacher LIST</h3>
-		<hr>
 		<div class="row teacher-lists">
 			<div class="col-sm-2 teacher-view" ng-repeat="teacher in teachers">
-				<a href="#">
+				<a href="/student/teacher/<%=teacher.id%>">
 					<figure><img src="http://placehold.it/50x50" alt="avatar" /></figure>
 					<div class="teacher-info">
 						<div class="status-circle status-default"></div>

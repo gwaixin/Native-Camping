@@ -6,7 +6,7 @@
       </a>
     </li>
     <li>
-      <a href="/student/teachers">Teachers</a>
+      <a href="/student/teacher/list">Teachers</a>
     </li>
     <li>
       <a href="#">Profile</a>
