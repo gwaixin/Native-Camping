@@ -25,7 +25,8 @@ Route::post('/register', 'AuthController@register');
 
 # Student
 Route::get('/student', 'StudentController@index');
-Route::get('/student/teachers', 'StudentController@teachers');
+Route::get('/student/teacher/list', 'StudentController@teachers');
+Route::get('/student/teacher/{id}', 'StudentController@teacherDetail');
 
 # Teacher
 Route::get('/teacher', 'TeacherController@index');
@@ -34,11 +35,11 @@ Route::get('/teacher/textbook', 'TeacherController@textbook');
 
 # API Users
 Route::get('/user/teacher/all', 'UserController@teachers');
-Route::get('/user/teacher/:id', 'UserController@teacher');
-Route::put('/user/teacher/:id', 'UserController@teacherUpdate');
-Route::delete('/user/teacher/:id', 'UserController@teachereDelete');
+Route::get('/user/teacher/{id}', 'UserController@teacher');
+Route::put('/user/teacher/{id}', 'UserController@teacherUpdate');
+Route::delete('/user/teacher/{id}', 'UserController@teachereDelete');
 
 Route::get('/user/student/all', 'UserController@students');
-Route::get('/user/student/:id', 'UserController@student');
-Route::put('/user/student/:id', 'UserController@studentUpdate');
-Route::delete('/user/student/:id', 'UserController@studentDelete');
+Route::get('/user/student/{id}', 'UserController@student');
+Route::put('/user/student/{id}', 'UserController@studentUpdate');
+Route::delete('/user/student/{id}', 'UserController@studentDelete');
