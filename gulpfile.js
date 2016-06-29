@@ -29,9 +29,9 @@ elixir(function(mix) {
     
     // Angular scripts
     
-    mix.coffee('angular/app.coffee', 'public/js/angular/app.js', 'resources/assets/coffee');
-    // mix.coffee('angular/controller/students/teacherListController.coffee', 'public/js/angular/controller/student/teacher-list.js');
-    
+    // mix.coffee('angular/app.coffee', 'public/js/angular/app.js', 'resources/assets/coffee');
+    mix.coffee('angular/controller/students/teacherListController.coffee', 'public/js/angular/controller/student/teacher-list.js');
+    mix.coffee('angular/factory/requestHandler.coffee', 'public/js/angular/factories.js');
     //Users styles
-    mix.sass('users/common.scss', 'public/css/users/common.css');
+    // mix.sass('users/common.scss', 'public/css/users/common.css');
 });
