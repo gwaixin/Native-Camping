@@ -11,6 +11,12 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
+					@yield('breadcrumbs')
+					{{-- <ol class="breadcrumb">
+					  <li><a href="#">Home</a></li>
+					  <li><a href="#">Library</a></li>
+					  <li class="active">Data</li>
+					</ol> --}}
 					@yield('contentMain')
 				</div>
 			</div>

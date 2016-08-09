@@ -159,8 +159,9 @@ return [
         /*
          * Additional providers
          */
-        Illuminate\Html\HtmlServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
     ],
 
     /*
@@ -210,11 +211,11 @@ return [
         /*
          * Additional aliases
          */
-        'Form'=> Illuminate\Html\FormFacade::class, 
-        'Html'=> Illuminate\Html\HtmlFacade::class,
+        'Form'=> Collective\Html\FormFacade::class, 
+        'Html'=> Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
-        'Hash' => Illuminate\Support\Facades\Hash::class
-
+        'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

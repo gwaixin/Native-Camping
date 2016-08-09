@@ -27,6 +27,10 @@
 	</div>
 @endsection
 
+@section('breadcrumbs')
+	{!! Breadcrumbs::render('teacherDetail', $teacher->id) !!}
+@endsection
+
 @section('scripts')
 	@parent
 	{{-- your scripts --}}

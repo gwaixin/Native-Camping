@@ -19,6 +19,10 @@
 	</div>
 @endsection
 
+@section('breadcrumbs')
+	{!! Breadcrumbs::render('teacherList') !!}
+@endsection
+
 @section('scripts')
 	@parent
 	{!! Html::script('js/angular/controller/student/teacher-list.js') !!}
