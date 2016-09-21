@@ -1,15 +1,15 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
     <li class="sidebar-brand">
-      <a href="#">
+      <a href="/teacher">
         NativeCamping
       </a>
     </li>
+		<li>
+			<a href="/teacher/lesson">Lesson</a>
+		</li>
     <li>
-      <a href="#">Lesson</a>
-    </li>
-    <li>
-      <a href="#">Textbook</a>
+      <a href="/teacher/textbook">Textbook</a>
     </li>
     <li>
       <a href="/logout">Logout</a>

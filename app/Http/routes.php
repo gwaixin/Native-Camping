@@ -30,7 +30,7 @@ Route::get('/student/teacher/{id}', 'StudentController@teacherDetail');
 
 # Teacher
 Route::get('/teacher', 'TeacherController@index');
-Route::get('/teacher/room', 'TeacherController@room');
+Route::get('/teacher/lesson', 'TeacherController@lesson');
 Route::get('/teacher/textbook', 'TeacherController@textbook');
 
 # API Users
