@@ -21,3 +21,9 @@
 @section('styles')
 	{!! Html::style('css/simple-sidebar.css') !!}
 @endsection
+
+@section('scripts')
+	@foreach ($scripts as $key)
+		{!! Html::script("js/" . $key . ".js") !!}
+	@endforeach
+@endsection
