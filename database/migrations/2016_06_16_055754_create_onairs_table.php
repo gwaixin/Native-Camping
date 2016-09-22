@@ -25,14 +25,10 @@ class CreateOnairsTable extends Migration
             $table->dateTime('end_time');
             $table->tinyInteger('lesson_type');
             $table->tinyInteger('web_rtc_type');
+            $table->tinyInteger('lesson_finish');
             $table->timestamps();
 
             $table->foreign('teacher_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
-
-            $table->foreign('student_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
