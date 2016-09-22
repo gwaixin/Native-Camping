@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Onair;
+
 use \Auth;
+use Validator;
 
 class TeacherController extends Controller
 {
@@ -19,19 +22,65 @@ class TeacherController extends Controller
     }
     
     public function lesson(Request $request) {
-			return view('teachers.lesson', [
-				'title'     => 'Lesson On', 
-				'teacherID' => Auth::user()->id,
-				'ipAdress'  => $request->ip(),
-				'scripts'   => [
-					'webrtc/socket.io',
-					'webrtc/peer.min',
-					'webrtc/constant', 
-					'webrtc/connect',
-					'webrtc/event.common',
-					'webrtc/event.teacher'
-				]
-			]);
+			
+			/* initiate variables */
+			$res = array('result' => false, 'message' => '', 'method' => '');
+			
+			/* get teacher's current lesson onairs */
+			$onair = Onair::where('teacher_id', Auth::user()->id)->first();
+			
+			/* checks teacher has lesson onairs */
+			if ($onair) {
+				/* update wait_start_time */
+				$onair->wait_start_time = date("Y-m-d H:i:s");
+				
+				/* set method for tracking errors */
+				$res['method'] = 'update_onair';
+				
+				$res['result'] = true;
+			/* onair does not exist, so create one */
+			} else {
+				/* prepare data for creating new lesson onairs */
+				$onair = new Onair;
+				$onair->teacher_id = Auth::user()->id;
+				$onair->status = 1;
+				$onair->connect_flg = 0;
+				$onair->wait_start_time = date('Y-m-d H:i:s');
+				
+				/* set method for tracking errors */
+				$res['method'] = 'create_onair';
+				
+				$res['result'] = true;
+			}
+			
+			/* save lesson onairs */
+			if ($onair->save() && $res['result']) {
+				// TODO
+			/* fail to create lesson onair */	
+			} else {
+				$res['message'] = "Error [500] : Interval server error, fail in method " . $res['method'];
+			}
+			
+			/* proceed to teacher lesson view if result is true otherwise output error message */
+			if ($res['result']) {
+				/* return view with data needed for the page */
+				return view('teachers.lesson', [
+					'title'     => 'Lesson On', 
+					'teacherID' => Auth::user()->id,
+					'ipAdress'  => $request->ip(),
+					'scripts'   => [
+						/* sets external scripts for this page */
+						'webrtc/socket.io',
+						'webrtc/peer.min',
+						'webrtc/constant', 
+						'webrtc/connect',
+						'webrtc/event.common',
+						'webrtc/event.teacher'
+					]
+				]);
+			} else {
+				echo $res['message'];
+			}
     }
     
     public function textbook() {
