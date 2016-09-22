@@ -26,7 +26,7 @@
 				</div>
 			@elseif (session('message'))
 				<div class="alert alert-success">
-					<p>{{ session('message') }}</p>
+					<p>{!! session('message') !!}</p>
 				</div>
 			@endif
 		</div>
