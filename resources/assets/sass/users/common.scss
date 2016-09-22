@@ -5,15 +5,15 @@
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	&.status-default {
-		background-color: #aaa;
+		background-color: #AAAAAA;
 	}
 	&.status-standby {
-		background-color: #78b;
+		background-color: #26D0FA;
 	}
 	&.status-lesson {
-		background-color: #b78;
+		background-color: #F0295D;
 	}
-	&.status-reservation {
+	&.status-reserved {
 		background-color: #bb6;
 	}
 	&.status-other {

@@ -3,9 +3,15 @@
   height: 15px;
   border-radius: 50%; }
   .status-circle.status-default {
-    background-color: #aaa; }
+    background-color: #AAAAAA; }
   .status-circle.status-standby {
-    background-color: #78b; }
+    background-color: #26D0FA; }
+  .status-circle.status-lesson {
+    background-color: #F0295D; }
+  .status-circle.status-reserved {
+    background-color: #bb6; }
+  .status-circle.status-other {
+    background-color: #4b6; }
 
 .teacher-lists .teacher-view {
   text-align: center; }
