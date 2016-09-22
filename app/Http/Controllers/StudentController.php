@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Library\Common;
 
 use App\User;
+use App\Onair;
 
 class StudentController extends Controller
 {
@@ -23,10 +25,30 @@ class StudentController extends Controller
       return view('students.teachers', ['title' => 'Teacher List']);
     }
     
-    public function teacherDetail($id) {
-      $teacher = User::find($id);
-      return view('students.teacherDetail', ['title' => 'Teacher Detail', 'teacher' => $teacher]);
-    }
+		public function teacherDetail($id) {
+			/* Fetch teacher's information */
+			$teacher = User::find($id);
+
+			/* Redirects to teacher list if teacher does not exist */
+			if (empty($teacher)) {
+				return redirect()
+					->action("StudentController@teachers")
+					->with(['message' => "Teacher id does not match any record, redirected to teacher's list."]);
+			}
+
+			/* Fetch teacher's current lesson if it has any */
+			$onair = Onair::where(['teacher_id' => $id])->first();
+
+			/* Prepare lesson onair teacher status */
+			$onAirStatus = Common::getTeacherStatus($onair);
+
+			return view('students.teacherDetail', [
+				/* data that will pass to view */
+				'title'   => 'Teacher Detail',
+				'teacher' => $teacher,
+				'status'  => $onAirStatus
+			]);
+		}
     
     public function startLesson() {
       //TODO

@@ -6,7 +6,7 @@
 		<div class="col-lg-9">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4><div class="status-circle status-default pull-right"></div> Teacher {{$teacher->fname}} {{$teacher->mname}} {{$teacher->lname}}</h4>
+					<h4><div class="status-circle status-{{$status}} pull-right"></div> Teacher {{$teacher->fname}} {{$teacher->mname}} {{$teacher->lname}}</h4>
 				</div>
 				<div class="panel-body">
 					<dl>
@@ -15,7 +15,7 @@
 						<dt>Country :</dt>
 						<dd><span>{{$teacher->country}}</span></dd>
 					</dl>
-					<button class="btn btn-md btn-primary" name="button">Start Lesson</button>
+					<button class="btn btn-md btn-primary {{$status === 'standby' ? '' : 'disabled'}}" name="button">Start Lesson</button>
 				</div>
 			</div>
 		</div>
