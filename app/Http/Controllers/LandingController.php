@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use \Auth;
+
 class LandingController extends Controller {
     
+		public function __construct() {
+			$this->middleware('role:none');
+		}
+		
     public function index() {
     	return view('landing.index', ['title' => 'home']);
     }
