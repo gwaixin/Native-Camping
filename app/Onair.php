@@ -23,4 +23,16 @@ class Onair extends Model {
 		'lesson_finish'            // lesson finish boolean => 1: finish, 0: not finish
 	);
 	
+	public function save(array $options = []) {
+		
+		/* before saving, check if chat_hash is still empty */
+		if (empty($this->chat_hash)) {
+			/* create new chat hash */
+			$this->chat_hash = $this->teacher_id . '-' . time() . '-' . substr((md5(uniqid(rand(),1))), 0, 6);
+		}
+		
+		// return to proceed parent save
+		return parent::save();
+	}
+	
 }
