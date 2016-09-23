@@ -53,7 +53,7 @@
 	$(function(){
 		connect.config = {
 			memberType: "teacher",
-			chatHash: "",
+			chatHash: "{{ $chatHash }}",
 			teacherID: "{{ $teacherID }}",
 			userID: 0,
 			lessonType: "1",
