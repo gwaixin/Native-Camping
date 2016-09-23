@@ -24,7 +24,7 @@ class TeacherController extends Controller
     public function lesson(Request $request) {
 			
 			/* initiate variables */
-			$res = array('result' => false, 'message' => '', 'method' => '');
+			$res = array('result' => false, 'method' => '');
 			
 			/* get teacher's current lesson onairs */
 			$onair = Onair::where('teacher_id', Auth::user()->id)->first();
@@ -55,19 +55,12 @@ class TeacherController extends Controller
 			
 			/* save lesson onairs */
 			if ($onair->save() && $res['result']) {
-				// TODO
-			/* fail to create lesson onair */	
-			} else {
-				$res['message'] = "Error [500] : Interval server error, fail in method " . $res['method'];
-			}
-			
-			/* proceed to teacher lesson view if result is true otherwise output error message */
-			if ($res['result']) {
 				/* return view with data needed for the page */
 				return view('teachers.lesson', [
 					'title'     => 'Lesson On', 
 					'teacherID' => Auth::user()->id,
 					'ipAdress'  => $request->ip(),
+					'chatHash'  => $onair->chat_hash,
 					'scripts'   => [
 						/* sets external scripts for this page */
 						'webrtc/socket.io',
@@ -78,8 +71,9 @@ class TeacherController extends Controller
 						'webrtc/event.teacher'
 					]
 				]);
+			/* fail to create lesson onair */	
 			} else {
-				echo $res['message'];
+				echo "Error [500] : Interval server error, fail in method " . $res['method'];
 			}
     }
     
