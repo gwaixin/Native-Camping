@@ -24,6 +24,12 @@
 	</div>
 @endsection
 @section('scripts')
+	@if (isset($scripts))
+		@foreach ($scripts as $key)
+{!! Html::script("js/" . $key . ".js") !!}
+		@endforeach
+	@endif
+	@yield('scriptInternal')
 {!! Html::script('js/angular/factories.js') !!}
 @endsection
 	
