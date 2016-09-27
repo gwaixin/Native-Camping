@@ -38,7 +38,53 @@ var eventCommon = (function() {
 		.off('room.generalCommandSent').on('room.generalCommandSent', function(data){})
 		
 		/* receive general message events */
-		.off('room.generalCommand').on('room.generalCommand', function(data){});
+		.off('room.generalCommand').on('room.generalCommand', function(data){
+			console.log('[EVENT_COMMON] received generalCommand');
+			switch(data.command) {
+				// case 'roomConnected' : break;
+				// case 'startLesson' : break;
+				// case 'callStudent' : break;
+				// case 'appendConnectedTest' : break;
+				// case 'selectIp' : break;
+				// case 'closeExistingAdmin' : break;
+				// case 'refreshConnectedAdmin' : break;
+				// case 'removeAdminIp' : break;
+				// case 'studentSelectingTextbook' : break;
+				// case 'studentSelectedTextbook' : break;
+				// case 'studentSelectedSideMenuTextbook' : break;
+				// case 'changeVolume' : break;
+				// case 'toggleCamera' : break;
+				// case 'refreshPeerJS' : break;
+				
+				/* catch general disconnection */
+				case 'lessonDisconnect' :
+				case 'teacherLessonDisconnect' :
+				case 'studentLessonDisconnect' :
+				case 'teacherLessonDisconnectOthers' :
+				case 'studentLessonDisconnectOthers' :
+				case 'studentTimedOut' :
+				case 'teacherTimedOut' : 
+					connect.lessonFinished = true; // set lesson to finished
+				case 'teacherForceReconnect' :
+				case 'studentForceReconnect' :
+				case 'teacherSuddenDisconnect' :
+				case 'studentSuddenDisconnect' :
+					if (typeof lessonDisconnect !== 'undefined') { 
+						lessonDisconnect(data);
+					} else {
+						console.warn('[EVENT_COMMON] cannot find lessonDisconnect');
+					}
+					break;
+				// case 'sendChat' : break;
+				// case 'passStudentSettings' : break;
+				// case 'passVideoSettings' : break;
+				// case 'playSound' : break;
+				// case 'callTestStudent' : break;
+				// case 'SelectAdmin' : break;
+				// case 'adminAvailable' : break;
+				// case 'AskAdminCallStudent' : break;
+			}
+		});
 	};
 	
 	/**
