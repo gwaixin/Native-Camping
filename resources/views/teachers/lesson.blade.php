@@ -90,5 +90,34 @@
 			}
 		);
 	});
+	
+	/* teacher functions that can be same function name with the students or admin */
+	
+	/**
+	 * disconnecting lesson
+	 * @param  {Object} data   contains information about the disconnection
+	 */
+	function lessonDisconnect(data) {
+		console.warn(data);
+		
+		/* prepare command */
+		var command = (typeof data.command !== 'undefined') ? data.command : 'unknown';
+		
+		/* check the disconnection type */
+		switch (command) {
+			case constant.disconnect.student.timeOut : //student's connection to the socket server timed out
+				console.log('Beacause the student was unable to reconnect within the alotted time, the system will automatically end the lesson.');
+				
+				/* redirect teacher to dashboard */
+				setTimeout(function() { window.location.href = '/teacher?action=' + command; }, 2000);
+				break;
+			default:
+				console.log('Unknown disconnection command -> ', command);
+				break;
+		}
+		
+		
+		
+	}
 	</script>
 @endsection
