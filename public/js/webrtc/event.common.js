@@ -39,7 +39,7 @@ var eventCommon = (function() {
 		
 		/* receive general message events */
 		.off('room.generalCommand').on('room.generalCommand', function(data){
-			console.log('[EVENT_COMMON] received generalCommand');
+			console.log('[EVENT_COMMON] received generalCommand', data);
 			switch(data.command) {
 				// case 'roomConnected' : break;
 				// case 'startLesson' : break;
@@ -62,6 +62,7 @@ var eventCommon = (function() {
 				case 'studentLessonDisconnect' :
 				case 'teacherLessonDisconnectOthers' :
 				case 'studentLessonDisconnectOthers' :
+				case 'studentLessonFinished':
 				case 'studentTimedOut' :
 				case 'teacherTimedOut' : 
 					connect.lessonFinished = true; // set lesson to finished
