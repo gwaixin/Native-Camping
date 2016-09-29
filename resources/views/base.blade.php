@@ -8,7 +8,7 @@
 	<!-- ADDITIONAL STYLES -->
 	@yield('styles')
 </head>
-<body>
+<body {{isset($ngController) ? "ng-controller=$ngController" : "" }}>
 	<div id="wrapper">
 		@yield('nav')
 		<div class="container">

@@ -61,6 +61,8 @@ class TeacherController extends Controller
 					'teacherID' => Auth::user()->id,
 					'ipAdress'  => $request->ip(),
 					'chatHash'  => $onair->chat_hash,
+					'status'    => 'standby',
+					'ngController' => 'Lesson',
 					'scripts'   => [
 						/* sets external scripts for this page */
 						'webrtc/socket.io',
@@ -68,7 +70,8 @@ class TeacherController extends Controller
 						'webrtc/constant', 
 						'webrtc/connect',
 						'webrtc/event.common',
-						'webrtc/event.teacher'
+						'webrtc/event.teacher',
+						'angular/controller/teacher/lesson'
 					]
 				]);
 			/* fail to create lesson onair */	
