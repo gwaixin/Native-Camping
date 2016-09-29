@@ -113,6 +113,11 @@ class StudentController extends Controller
 				}
 			}
 		}
+		
+		public function lessonFinish() {
+			echo "END LESSON";
+		}
+		
 		public function startLesson() {
 			//TODO
 		}
