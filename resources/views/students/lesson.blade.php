@@ -72,6 +72,12 @@
 			/* process the disconnection */
 			switch (command) {
 				
+				/* teacher has suddenly stop the lesson by others */
+				case constant.disconnect.teacher.others:
+				 	console.warn('[SOCKET] teacher stopped lesson by others');
+					window.location.href = '/student/teacher/' + connect.config.teacherID + "?action=lessonEnd";
+					break;
+				
 				/* student will be notify by teacher's sudden disconnection */
 				case constant.disconnect.teacher.sudden:
 					console.warn('[SOCKET] teacher sudden disconnection ');
