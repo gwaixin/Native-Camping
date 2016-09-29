@@ -18,7 +18,7 @@
 					<form class="start-form" action="/student/lesson" method="post">
 						{!! csrf_field() !!}
 						<input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-						<input type="hidden" name="chat_hash" value="{{ $onair->chat_hash }}">
+						<input type="hidden" name="chat_hash" value="{{ isset($onair) ? $onair->chat_hash : '' }}">
 						<button type="submit" class="btn btn-md btn-primary {{$status === 'standby' ? '' : 'disabled'}}" name="button">Start Lesson</button>
 					</form>
 				</div>
