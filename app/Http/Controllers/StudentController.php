@@ -96,13 +96,15 @@ class StudentController extends Controller
 						'onair'    => $onair,
 						'user'     => Auth::user(),
 						'ipAdress' => $request->ip(),
+						'ngController' => 'Lesson',
 						'scripts'  => [
 							'webrtc/socket.io',
 							'webrtc/peer.min',
 							'webrtc/constant',
 							'webrtc/connect',
 							'webrtc/event.common',
-							'webrtc/event.student'
+							'webrtc/event.student',
+							'angular/controller/student/lesson'
 						]
 					]);
 				} else {

@@ -10,7 +10,7 @@
         return connect.init(function(conn) {
 
           /*initialize camera */
-          return connect.intitializeCamera(function() {
+          return connect.initializeCamera(function() {
 
             /* initialize events */
             eventCommon.init();
