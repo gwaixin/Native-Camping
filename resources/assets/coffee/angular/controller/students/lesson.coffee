@@ -27,6 +27,7 @@ window.ncApp.controller 'Lesson', [
 				console.warn 'ERROR to connect socket: ', error, conn
 				return
 			return
+			
 		###*
 		 * disconnecting lesson
 		 * @param  {Object} data  contains information about the disconnection
@@ -51,7 +52,6 @@ window.ncApp.controller 'Lesson', [
 				when constant.disconnect.teacher.timeOut
 					### teacher's connection to the socket server timed out ###
 					console.log '[SOCKET] Because the teacher was unable to reconnect within the alotted time, the system will automatically end the lesson.'
-					break
 					### redirect student to dashboard ###
 					setTimeout () ->
 						window.location.href = '/student?action=' + command
@@ -60,6 +60,21 @@ window.ncApp.controller 'Lesson', [
 					break
 				else
 					console.log '[SOCKET] Unknown disconnection command -> ', command
+			return
+		
+		###*
+		 * stops lesson and process disconnecting to socket and redirect to finish lesson page
+		###
+		$s.endLesson = () ->
+			console.warn '[NG] ending the lesson'
+			if confirm "Are you sure you want to end lesson now?"
+				data = {
+					command: 'studentLessonFinished'
+					content: connect.config
+					mode: 'to'
+				}
+				eventCommon.sendCommand data
+				window.location.href = "/student/lesson_finish"
 			return
 		return
 ]

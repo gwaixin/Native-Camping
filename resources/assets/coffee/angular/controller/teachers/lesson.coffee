@@ -37,6 +37,17 @@ window.ncApp.controller 'Lesson', [
 			
 			### check the disconnection type ###
 			switch command
+				when constant.disconnect.student.finished
+					### student ended lesson ###
+					console.warn '[SOCKET] student stopped lesson'
+					window.location.href = '/student?action=' +command
+					break
+				
+				when constant.disconnect.student.sudden
+					### student sudden disconnect ###
+					console.warn '[SOCKET] student sudden disconnect'
+					break
+				
 				when constant.disconnect.student.timeOut 
 					### student's connection to the socket server timed out ###
 					console.log 'Because the student was unable to reconnect within the alotted time, the system will automatically end the lesson.'
@@ -46,6 +57,7 @@ window.ncApp.controller 'Lesson', [
 						window.location.href = '/teacher?action=' + command
 						return
 					, 2000)
+					break
 					
 				else 
 					### command does not belongs to any case ###

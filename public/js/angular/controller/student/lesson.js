@@ -58,7 +58,6 @@
 
             /* teacher's connection to the socket server timed out */
             console.log('[SOCKET] Because the teacher was unable to reconnect within the alotted time, the system will automatically end the lesson.');
-            break;
 
             /* redirect student to dashboard */
             setTimeout(function() {
@@ -67,6 +66,23 @@
             break;
           default:
             console.log('[SOCKET] Unknown disconnection command -> ', command);
+        }
+      };
+
+      /**
+      		 * stops lesson and process disconnecting to socket and redirect to finish lesson page
+       */
+      $s.endLesson = function() {
+        var data;
+        console.warn('[NG] ending the lesson');
+        if (confirm("Are you sure you want to end lesson now?")) {
+          data = {
+            command: 'studentLessonFinished',
+            content: connect.config,
+            mode: 'to'
+          };
+          eventCommon.sendCommand(data);
+          window.location.href = "/student/lesson_finish";
         }
       };
     }
