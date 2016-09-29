@@ -26,7 +26,7 @@ var constant = (function() {
 			timeOut: "studentTimedOut",
 			forceReconnect: "studentForceReconnect",
 		}
-	}
+	};
 
 
 	return con;

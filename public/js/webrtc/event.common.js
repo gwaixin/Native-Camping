@@ -69,7 +69,10 @@ var eventCommon = (function() {
 				case 'studentForceReconnect' :
 				case 'teacherSuddenDisconnect' :
 				case 'studentSuddenDisconnect' :
-					if (typeof lessonDisconnect !== 'undefined') { 
+					/* check if angular already setup */
+					if (typeof ngLesson !== 'undefined') {
+						ngLesson.lessonDisconnect(data);
+					} else if (typeof lessonDisconnect !== 'undefined') { 
 						lessonDisconnect(data);
 					} else {
 						console.warn('[EVENT_COMMON] cannot find lessonDisconnect');
@@ -110,6 +113,17 @@ var eventCommon = (function() {
 
 		/* return true */
 		return true;
+	};
+	
+	/**
+	 * emmiting command to socket
+	 * @param  {Object} data [command] type of command wil be send
+	 * @param  {Object} data [content] information about the sender
+	 * @param  {Object} data [mode] intended for 'to' or 'all'
+	 */
+	obj.sendCommand = function(data) {
+		console.log('[SOCKET] sending general command');
+		connect.socket.emit('room.generalCommand', data);
 	};
 	
 	return obj;
