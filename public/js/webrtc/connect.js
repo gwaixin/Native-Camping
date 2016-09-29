@@ -51,7 +51,7 @@ var connect = (function() {
 	};
 	
 	/* initialize camera */
-	con.intitializeCamera = function(successCallBack, failCallBack) {
+	con.initializeCamera = function(successCallBack, failCallBack) {
 		element = this;
 		
 		/* trigger fail callback */

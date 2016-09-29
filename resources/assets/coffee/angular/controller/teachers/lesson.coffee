@@ -10,7 +10,7 @@ window.ncApp.controller 'Lesson', [
 		$s.init = () ->
 			connect.init (conn) ->
 				###initialize camera ###
-				connect.intitializeCamera ->
+				connect.initializeCamera ->
 					### initialize events ###
 					eventCommon.init()
 					### initialize events ###
