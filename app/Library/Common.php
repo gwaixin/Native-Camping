@@ -22,6 +22,6 @@ class Common {
 			"3" => "lesson"
 		);
 		
-		return isset($onair) && isset($optStatus[$onair->status]) ? $optStatus[$onair->status] : "default";
+		return !empty($onair) && isset($optStatus[$onair->status]) ? $optStatus[$onair->status] : "default";
 	}
 }
