@@ -23,15 +23,18 @@
 				</div>
 				<div class="col-lg-12">
 					<b>chatbox</b>
-					<table class="chatarea" style="height: 150px;">
-						
+					<table class="chatarea table table-bordered" >
+						<tr ng-repeat="chat in chats">
+							<td><%=chat.sender%></td>
+							<td><%=chat.message%></td>
+						</tr>
 					</table>
 					<div class="row">
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="name" value="">
+							<input type="text" class="form-control" ng-model="chatMessage" value="" ng-enter="sendMessage(chatMessage)">
 						</div>
 						<div class="col-lg-2">
-							<input type="button" class="btn btn-default" value="Send">
+							<input type="button" class="btn btn-default" ng-click="sendMessage(chatMessage)" value="Send">
 						</div>
 					</div>
 				</div>

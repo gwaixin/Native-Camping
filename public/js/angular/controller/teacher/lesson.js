@@ -5,6 +5,10 @@
       var self;
       self = this;
 
+      /* initialize variables */
+      $s.chats = [];
+      $s.chatMessage = "";
+
       /* initialize lesson */
       $s.init = function() {
         return connect.init(function(conn) {
@@ -91,8 +95,64 @@
 
         }
       };
+
+      /**
+      		 * sending message to student by sending it to socket
+       */
+      $s.sendMessage = function(message, sender) {
+        var data;
+        console.log('[NG] sending message init');
+
+        /* validate send message */
+        if (message === "" || typeof message === "undefined") {
+          console.warn('[NG] message is empty');
+          return;
+        }
+        console.log('[NG] continue message send');
+
+        /* prepare message data */
+        data = {
+          command: 'sendChat',
+          content: connect.config,
+          mode: 'to',
+          message: message
+        };
+
+        /* check if there was a sender, otherwise the teacher is the sender */
+        if (typeof sender === 'undefined') {
+          sender = "me";
+
+          /* send chat to student via socket */
+          eventCommon.sendCommand(data);
+        } else if (sender === 'system') {
+
+          /* just do nothing */
+        } else {
+          sender = connect.config.teacherID;
+        }
+
+        /* inser new message to chat layout */
+        $s.chats.push({
+          sender: sender,
+          message: message
+        });
+
+        /* clear message chat input */
+        $s.chatMessage = "";
+      };
     }
-  ]);
+  ]).directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+      element.bind('keydown keypress', function(event) {
+        if (event.which === 13) {
+          scope.$apply(function() {
+            scope.$eval(attrs.ngEnter);
+          });
+          event.preventDefault();
+        }
+      });
+    };
+  });
 
 }).call(this);
 

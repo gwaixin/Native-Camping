@@ -41,6 +41,13 @@ var eventCommon = (function() {
 		.off('room.generalCommand').on('room.generalCommand', function(data){
 			console.log('[EVENT_COMMON] received generalCommand', data);
 			switch(data.command) {
+				/* catch general connect */
+				case 'teacherConnected': 
+					ngLesson.$apply(ngLesson.sendMessage('Teacher has connected', 'system'));
+					break;
+				case 'studentConnected':
+					ngLesson.$apply(ngLesson.sendMessage('Student has connected', 'system'));
+					break;
 				// case 'roomConnected' : break;
 				// case 'startLesson' : break;
 				// case 'callStudent' : break;
@@ -79,7 +86,10 @@ var eventCommon = (function() {
 						console.warn('[EVENT_COMMON] cannot find lessonDisconnect');
 					}
 					break;
-				// case 'sendChat' : break;
+				/* receiving new chat */
+				case 'sendChat' : 
+					ngLesson.$apply(ngLesson.sendMessage(data.message, 'testing'));
+					break;
 				// case 'passStudentSettings' : break;
 				// case 'passVideoSettings' : break;
 				// case 'playSound' : break;

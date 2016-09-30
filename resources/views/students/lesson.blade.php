@@ -19,7 +19,21 @@
 			</div>
 		</div>
 		<div class="col-lg-4">
-			chat area
+			<b>chatbox</b>
+			<table class="chatarea table table-bordered" >
+				<tr ng-repeat="chat in chats">
+					<td><%=chat.sender%></td>
+					<td><%=chat.message%></td>
+				</tr>
+			</table>
+			<div class="row">
+				<div class="col-lg-10">
+					<input type="text" class="form-control" ng-model="chatMessage" value="" ng-enter="sendMessage(chatMessage)">
+				</div>
+				<div class="col-lg-2">
+					<input type="button" class="btn btn-default" ng-click="sendMessage(chatMessage)" value="Send">
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection

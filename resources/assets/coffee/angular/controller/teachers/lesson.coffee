@@ -6,6 +6,10 @@ window.ncApp.controller 'Lesson', [
 	($s, $http) ->
 		self = this
 		
+		### initialize variables ###
+		$s.chats = []
+		$s.chatMessage = ""
+		
 		### initialize lesson ###
 		$s.init = () ->
 			connect.init (conn) ->
@@ -58,7 +62,6 @@ window.ncApp.controller 'Lesson', [
 						return
 					, 2000)
 					break
-					
 				else 
 					### command does not belongs to any case ###
 					console.log 'Unknown disconnection command -> ', command
@@ -83,6 +86,57 @@ window.ncApp.controller 'Lesson', [
 			else
 				return
 
+		###*
+		 * sending message to student by sending it to socket
+		###
+		$s.sendMessage = (message, sender) ->
+			console.log '[NG] sending message init'
+			
+			### validate send message ###
+			if message == "" or typeof message == "undefined"
+				console.warn '[NG] message is empty'
+				return
+			
+			console.log '[NG] continue message send'
+			
+			### prepare message data ###
+			data = {
+				command: 'sendChat'
+				content: connect.config
+				mode: 'to'
+				message: message
+			}
+			
+			### check if there was a sender, otherwise the teacher is the sender ###
+			if typeof sender == 'undefined'
+				sender = "me"
+				### send chat to student via socket ###
+				eventCommon.sendCommand data
+			else if sender == 'system'
+				### just do nothing ###
+			else
+				sender = connect.config.teacherID
+				
+			### inser new message to chat layout ###
+			$s.chats.push {
+				sender: sender
+				message: message
+			}
+			
+			### clear message chat input ###
+			$s.chatMessage = ""
+			return
+		
 		return
 				
 ]
+.directive 'ngEnter', () ->
+	(scope, element, attrs) ->
+		element.bind 'keydown keypress', (event) ->
+			if event.which == 13
+				scope.$apply ()->
+					scope.$eval attrs.ngEnter
+					return
+				event.preventDefault()
+			return
+		return

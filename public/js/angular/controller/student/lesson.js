@@ -5,6 +5,10 @@
       var self;
       self = this;
 
+      /* initialize variables */
+      $s.chats = [];
+      $s.chatMessage = "";
+
       /* initialize lesson */
       $s.init = function() {
         connect.init(function(conn) {
@@ -47,12 +51,20 @@
 
             /* teacher has suddenly stop the lesosn by others */
             console.warn('[SOCKET] teacher stopped lesson by others');
-            window.location.href = '/student/teacher/' + connect.config.teacherID + "?action=lessonEnd";
+            $s.$apply(function() {
+              return $s.sendMessage("teacher left the lesson", "system");
+            });
+            setTimeout(function() {
+              return window.location.href = '/student/teacher/' + connect.config.teacherID + "?action=lessonEnd";
+            }, 1000);
             break;
           case constant.disconnect.teacher.sudden:
 
             /* student will be notify by theacher's sudden disconnection */
             console.warn('[SOCKET] teacher sudden disconnection');
+            $s.$apply(function() {
+              return $s.sendMessage("teacher sudden disconnection", "system");
+            });
             break;
           case constant.disconnect.teacher.timeOut:
 
@@ -85,8 +97,58 @@
           window.location.href = "/student/lesson_finish";
         }
       };
+      $s.sendMessage = function(message, sender) {
+        var data;
+        console.log('[NG] sending message init');
+        if (message === "" || typeof message === "undefined") {
+          console.warn('[NG] message is empty');
+          return;
+        }
+        console.log('[NG] continue message sending');
+
+        /* prepare message data */
+        data = {
+          command: 'sendChat',
+          content: connect.config,
+          mode: 'to',
+          message: message
+        };
+
+        /* check if there was a sender, otherwise the student is the sender */
+        if (typeof sender === 'undefined') {
+          sender = "me";
+
+          /* send chat to teacher via socket */
+          eventCommon.sendCommand(data);
+        } else if (sender === 'system') {
+
+          /* just do nothing */
+        } else {
+          sender = connect.config.userID;
+        }
+
+        /* insert new message to chat layout */
+        $s.chats.push({
+          sender: sender,
+          message: message
+        });
+
+        /* clear message chat input */
+        $s.chatMessage = "";
+      };
     }
-  ]);
+  ]).directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+      element.bind('keydown keypress', function(event) {
+        if (event.which === 13) {
+          scope.$apply(function() {
+            scope.$eval(attrs.ngEnter);
+          });
+          event.preventDefault();
+        }
+      });
+    };
+  });
 
 }).call(this);
 
