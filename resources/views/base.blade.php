@@ -7,6 +7,9 @@
 	{!! Html::style('css/default-libs.min.css') !!}
 	<!-- ADDITIONAL STYLES -->
 	@yield('styles')
+	<!-- DEFAULT SCRIPT -->
+	{!! Html::script('js/default-libs.min.js') !!}
+	{!! Html::script('js/angular/app.js') !!}
 </head>
 <body {{isset($ngController) ? "ng-controller=$ngController" : "" }}>
 	<div id="wrapper">
@@ -32,9 +35,6 @@
 		</div>
 		@yield('content')
 	</div>
-	<!-- DEFAULT SCRIPT -->
-	{!! Html::script('js/default-libs.min.js') !!}
-	{!! Html::script('js/angular/app.js') !!}
 	<!-- ADDITIONAL SCRIPTS -->
 	@yield('scripts')
 </body>
